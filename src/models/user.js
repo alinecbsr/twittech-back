@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const UserSchema = new Schema({
   name: { type: String, required: [true, 'O Nome do usuário é requerido'] },
   user: { type: String, required: [true, 'O Usuário é requerido'], unique: true },
-  pass: { type: String, required: [true, 'A Senha é requerida'] },
+  password: { type: String, required: [true, 'A Senha é requerida'] },
   picture: { type: String},
   role: { type: String },
   description: { type: String },
