@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const bcrypt = require('bcryptjs');
-const {SkillSchema} = require('./skill')
+const {Skill, SkillSchema} = require('./skill')
 
 const UserSchema = new Schema({
   name: { type: String, required: [true, 'O Nome do usuário é requerido'] },
@@ -10,7 +10,7 @@ const UserSchema = new Schema({
   picture: { type: String},
   role: { type: String },
   description: { type: String },
-  skills: { type: [SkillSchema] },
+  skills: {type:[]} ,
   favorites: { type: [] },
   likes: { type: [] },
   github:{type:String},
