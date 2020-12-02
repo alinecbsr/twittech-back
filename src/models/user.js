@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const bcrypt = require('bcryptjs');
+const {SkillSchema} = require('./skill')
 
 const UserSchema = new Schema({
   name: { type: String, required: [true, 'O Nome do usuário é requerido'] },
@@ -9,7 +10,7 @@ const UserSchema = new Schema({
   picture: { type: String},
   role: { type: String },
   description: { type: String },
-  skills: { type: [] },
+  skills: { type: [SkillSchema] },
   favorites: { type: [] },
   likes: { type: [] },
   github:{type:String},
@@ -22,6 +23,7 @@ UserSchema.methods.checkPassword = function(password) {
 };
 
 UserSchema.pre('save', async function(next) {
+  this.name = this.name.toUpperCase();
   this.password = await bcrypt.hash(this.password, 8);
   next();
 });
